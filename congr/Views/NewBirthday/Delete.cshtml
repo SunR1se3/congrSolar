@@ -1,0 +1,35 @@
+@model congr.Models.Birthday
+
+@{
+    ViewData["Title"] = "Удаление";
+}
+
+<h3>Вы уверены, что хотите удалить эту запись?</h3>
+<div>
+    <hr />
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="card ml-3" style="width: 18rem;">
+                <img src="@Html.DisplayFor(model => model.Photo)" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h6>@Html.DisplayFor(model => model.Fio)</h6>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <img src="~/img/calendar-svgrepo-com.svg" alt=""
+                                    class="calendar-svg text-left">
+                        </div>
+                        <div class="col">
+                            <p class="text-right">@Html.DisplayFor(model => model.date)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-controller="Home" asp-action="Index">Отмена</a>
+    </form>
+</div>

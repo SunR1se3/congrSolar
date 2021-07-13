@@ -1,0 +1,55 @@
+@model IEnumerable<congr.Models.Birthday>
+@{ ViewData["Title"] = "В этом месяце"; }
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active disabled" href="#">В этом месяце</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-controller="All" asp-action="NextMonth">В следующем месяце</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-controller="All" asp-action="Year">В этом году</a>
+    </li>
+</ul>
+
+
+<div class="accordion" id="accordionMonth">
+    @if (Model != null)
+     {
+        @foreach (var item in Model)
+         {
+            <div class="card">
+                <div class="card-header" id="heading_@Html.DisplayFor(modelItem => item.Id)">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse_@Html.DisplayFor(modelItem => item.Id)" aria-expanded="false" aria-controls="collapseOne">
+                            ДР у @Html.DisplayFor(modelItem => item.Fio)
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapse_@Html.DisplayFor(modelItem => item.Id)" class="collapse" aria-labelledby="heading_@Html.DisplayFor(modelItem => item.Id)" data-parent="#accordionMonth">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@Html.DisplayFor(modelItem => item.Photo)" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h6>@Html.DisplayFor(modelItem => item.Fio)</h6>
+                            <div class="row mt-5">
+                                <div class="col">
+                                    <img src="~/img/calendar-svgrepo-com.svg" alt=""
+                                         class="calendar-svg text-left">
+                                </div>
+                                <div class="col">
+                                    <p class="text-right">@Html.DisplayFor(modelItem => item.date)</p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <a class="btn btn-info" asp-controller="NewBirthday" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                                <a class="btn btn-danger ml-5" asp-controller="NewBirthday" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         }
+     }
+</div>

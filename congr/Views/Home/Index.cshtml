@@ -1,0 +1,96 @@
+@{
+    ViewData["Title"] = "Ближайшие ДР";
+}
+
+
+<div class="card mt-5 mb-5">
+    <div class="card-header">
+        <h1 class="display-4 text-center text-danger">Через 3 дня и меньше</h1>
+    </div>
+    <div class="card-body">
+        @if (ViewBag.afterThreeDays != null)
+        {
+            <div class="container scroll-cards">
+                <div class="row justify-content-md-center">
+
+                    @foreach (var item in ViewBag.afterThreeDays)
+                    {
+                        <div class="card ml-3" style="width: 18rem;">
+                            <img src="@item.Photo" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h6>@item.Fio</h6>
+                                <div class="row mt-5">
+                                    <div class="col">
+                                        <img src="~/img/calendar-svgrepo-com.svg" alt=""
+                                                class="calendar-svg text-left">
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-right">@item.date</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <a class="btn btn-info" asp-controller="NewBirthday" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                                    <a class="btn btn-danger ml-5" asp-controller="NewBirthday" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="carousel-item">
+                <div class="alert alert-success" role="alert">
+                    Ближайщие 3 дня дней рождение нет!
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card mt-5 mb-5">
+    <div class="card-header">
+        <h1 class="display-4 text-center text-warning">Осталось меньше недели</h1>
+    </div>
+    <div class="card-body">
+        @if (ViewBag.afterSevenDays != null)
+        {
+            <div class="container scroll-cards">
+                <div class="row justify-content-md-center">
+
+                    @foreach (var item in ViewBag.afterSevenDays)
+                    {
+                        <div class="card ml-3" style="width: 18rem;">
+                            <img src="@item.Photo" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h6>@item.Fio</h6>
+                                <div class="row mt-5">
+                                    <div class="col">
+                                        <img src="~/img/calendar-svgrepo-com.svg" alt=""
+                                             class="calendar-svg text-left">
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-right">@item.date</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <a class="btn btn-info" asp-controller="NewBirthday" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                                    <a class="btn btn-danger ml-5" asp-controller="NewBirthday" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="carousel-item">
+                <div class="alert alert-success" role="alert">
+                    Ближайщие 3 дня дней рождение нет!
+                </div>
+            </div>
+        }
+    </div>
+</div>

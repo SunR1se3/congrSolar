@@ -1,0 +1,51 @@
+@model congr.Models.Birthday
+
+@{ ViewData["Title"] = "Edit"; }
+
+<h1>Edit</h1>
+
+<h4>Birthday</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Fio" class="control-label"></label>
+                <input asp-for="Fio" class="form-control" />
+                <span asp-validation-for="Fio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="date" class="control-label"></label>
+                <input asp-for="date" class="form-control" />
+                <span asp-validation-for="date" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="img-cur-block">
+                <label for="photo_cur" id="lb_cur_photo">Текущее фото</label>
+                <br />
+                <img src="@Html.DisplayFor(model => model.Photo)" id="photo_cur" class="photo_cur" alt="Alternate Text" />
+            </div>
+            <div class="form-group">
+                <label for="new_photo" class="btn btn-primary">Выбрать новое</label>
+                <input type="file" class="form-control" id="new_photo" style="visibility: hidden;" name="newPhoto">
+                <input type="text" class="form-control" id="photo" style="visibility: hidden;" name="Photo" value="@Html.DisplayFor(model => model.Photo)">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Отмена</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
